@@ -1,0 +1,34 @@
+<div class="player-bar">
+
+  <!-- LEFT: artwork + text -->
+  <div class="left">
+    <img class="cover" src= {{track.path}} />
+
+    <div class="track-info">
+      <div class="title">Song Title Goes Here</div>
+      <div class="artist">Artist Name • Album Name</div>
+    </div>
+  </div>
+
+  <!-- CENTER: controls + progress -->
+  <div class="center">
+    <div class="controls">
+      <button class="btn">⏮</button>
+      <button class="btn play">▶</button>
+      <button class="btn">⏭</button>
+    </div>
+
+    <div class="progress">
+      <span class="time">1:12</span>
+      <input type="range" />
+      <span class="time">3:45</span>
+    </div>
+  </div>
+
+  <!-- RIGHT: volume -->
+  <div class="right">
+    <span>🔊</span>
+    <input type="range" class="volume" />
+  </div>
+
+</div>

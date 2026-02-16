@@ -4,21 +4,22 @@
     padding: 0px 16px 0px 0px;
 }
 
-.song-card {
+
+.song-card-button {
   background-color: #222222;
   border:none;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 8px;
-  width: 380px;
+  width: 370px;
   cursor: pointer;
+  :hover {
+      background-color: #a19f9f;
+      transition: 0.3s;
+    }
 }
 
-.song-card:hover {
-  background-color: #696969;
-  transition: 0.3s;
-}
 
 .song-info {
   display: flex;
