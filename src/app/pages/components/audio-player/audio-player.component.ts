@@ -13,10 +13,15 @@ import { Track } from '../../../shared/models/track.model';
 })
 export class AudioPlayerComponent {
 
-  private currentTrack = this.playerService.currentTrack$;
+  private currentTrack: Track | null = null;
+
 
 
   constructor(private playerService: PlayerService) {
+    this.playerService.currentTrack$.subscribe(track => {
+      this.currentTrack = track;
+    });
+  }
 
   }
-}
+

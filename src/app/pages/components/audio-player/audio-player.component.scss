@@ -1,0 +1,87 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+
+.image {
+    width: 80px;
+    height: 80px;
+    margin-right: 16px;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+
+}
+
+.player-bar {
+    display: flex;
+    align-items: column;
+    width: 100%;
+}
+
+.shuffle-button {
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.progress input {
+  flex: 1;
+}
+
+.track-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.track-info {
+    font-size: 20px;
+}
+
+.artist {
+    padding: 10px 0px 4px 0px;
+}
+
+.control-button {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+
+.control-button-play {
+    width: 50px;
+    height: 50px;
+}
+
+.control-button-10sec-back {
+    width: 20px;
+    height: 20px;
+}

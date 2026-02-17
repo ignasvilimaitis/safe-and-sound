@@ -18,6 +18,7 @@
       background-color: #a19f9f;
       transition: 0.3s;
     }
+  font-family: 'Yaldevi Colombo Light Regular';
 }
 
 
@@ -35,6 +36,8 @@
 
 .bottom-part {
     padding-bottom: 6px;
+    display: flex;
+    flex-direction: row;
 }
 
 .song-artist {
@@ -42,6 +45,7 @@
   font-size: 20px;
   padding-right: 5px;
   margin: 0;
+  font-weight: normal;
 
 }
 
@@ -49,11 +53,13 @@
   color: #FFFFFF;
   font-size: 20px;
   margin: 0;
+  font-weight: normal;
 }
 
 .song-title {
   color: #FFFFFF;
   font-size: 20px;
   margin: 0;
+  font-weight: normal;
 }
 

@@ -1,34 +1,41 @@
 <div class="player-bar">
 
-  <!-- LEFT: artwork + text -->
-  <div class="left">
-    <img class="cover" src= {{track.path}} />
-
+<div class = "main">
+  <div class="top">
+    <img class="image" src= {{currentTrack.path}} />
     <div class="track-info">
-      <div class="title">Song Title Goes Here</div>
-      <div class="artist">Artist Name • Album Name</div>
+      <div class="artist">{{currentTrack.artist}} • {{currentTrack.album}}</div>
+      <div class="title">{{currentTrack.title}}</div>
     </div>
   </div>
 
-  <!-- CENTER: controls + progress -->
-  <div class="center">
-    <div class="controls">
-      <button class="btn">⏮</button>
-      <button class="btn play">▶</button>
-      <button class="btn">⏭</button>
-    </div>
-
-    <div class="progress">
+  <div class="progress">
       <span class="time">1:12</span>
       <input type="range" />
       <span class="time">3:45</span>
     </div>
-  </div>
 
-  <!-- RIGHT: volume -->
-  <div class="right">
-    <span>🔊</span>
-    <input type="range" class="volume" />
-  </div>
-
+  <div class="controls">
+    <button class="control-button">
+      <img src="assets/player-icons/10secBack.svg" class="control-button-10sec-back" />
+    </button>
+    <button class="control-button">
+      <img src="assets/player-icons/shuffle.svg" class="control-button-shuffle" />
+    </button>
+    <button class="control-button">
+      <img src="assets/player-icons/back.svg" class="control-button-back" />
+    </button>
+    <button class="control-button">
+      <img src="assets/player-icons/play.svg" class="control-button-play" />
+    </button>
+    <button class="control-button">
+      <img src="assets/player-icons/next.svg" class="control-button-next" />
+    </button>
+    <button class="control-button">
+      <img src="assets/player-icons/repeat.svg" class="control-button-repeat" />
+    </button>
+      <button class="control-button">
+      <img src="assets/player-icons/10secForward.svg" class="control-button-10sec-forward" />
+    </button>
+</div>
 </div>

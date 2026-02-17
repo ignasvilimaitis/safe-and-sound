@@ -1,13 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-family: 'Yaldevi Colombo Light Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Yaldevi Colombo Light Regular'), url('YaldeviColombo-Light.woff') format('woff');
+    
+}
 html, body {
   margin: 0;
   padding: 0;
   background-color: #222222;
   height: 100%;
-  font-family: 'Yaldevi Colombo Light', sans-serif;
+  font-family: 'Yaldevi Colombo Light Regular';
 }
+
+
 
 app-root {
   height: 100%;
   display: block;
+  font-family: 'Yaldevi Colombo Light Regular';
+}
+
+app-home {
+  height: 100%;
+  display: block;
+  font-family: 'Yaldevi Colombo Light Regular';
 }
