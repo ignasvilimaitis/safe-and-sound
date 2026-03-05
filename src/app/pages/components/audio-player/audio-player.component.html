@@ -14,7 +14,7 @@
       <input type="range" />
       <span class="time">3:45</span>
     </div>
-
+  <audio>
   <div class="controls">
     <button class="control-button">
       <img src="assets/player-icons/10secBack.svg" class="control-button-10sec-back" />
@@ -25,8 +25,8 @@
     <button class="control-button">
       <img src="assets/player-icons/back.svg" class="control-button-back" />
     </button>
-    <button class="control-button">
-      <img src="assets/player-icons/play.svg" class="control-button-play" />
+    <button class="control-button" (click)="playMusic()">
+      <img id="play-button" src="assets/player-icons/play.svg" class="control-button-play" />
     </button>
     <button class="control-button">
       <img src="assets/player-icons/next.svg" class="control-button-next" />
@@ -37,5 +37,6 @@
       <button class="control-button">
       <img src="assets/player-icons/10secForward.svg" class="control-button-10sec-forward" />
     </button>
-</div>
+  </div>
+  </audio>
 </div>

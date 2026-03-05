@@ -14,8 +14,20 @@ import { Track } from '../../../shared/models/track.model';
 export class AudioPlayerComponent {
 
   private currentTrack: Track | null = null;
+  private isPlaying: boolean = false;
 
+  
 
+  playMusic() {
+    if (this.isPlaying == true) {
+          document.getElementById('play-button')?.setAttribute('src', 'assets/player-icons/play.svg');
+          this.isPlaying = false;
+    } else {
+          this.isPlaying = true;
+          document.getElementById('play-button')?.setAttribute('src', 'assets/player-icons/pause.svg');
+    }
+    
+  }
 
   constructor(private playerService: PlayerService) {
     this.playerService.currentTrack$.subscribe(track => {
