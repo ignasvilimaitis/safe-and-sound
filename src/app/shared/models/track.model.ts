@@ -2,7 +2,7 @@ export interface Track {
   id: string;
 
   path: string;     
-  url?: string;        
+  audio?: string;        
 
   title: string;
   artist: string;

@@ -13,6 +13,7 @@ export class SongCardComponent {
 
   private track : Track = {
     path: "assets/icons/safeandsound.jpg",
+    audio: "assets/test-songs/1.mp3",
     id: '1',
     title: 'Safe and Sound',
     artist: 'Midrift',
@@ -24,7 +25,7 @@ export class SongCardComponent {
 
   onClick () {
     this.playerService.setTrack(this.track);
-    console.log('Track set to:', this.track);
+    console.log('Track set to :', this.track);
   }
 
   constructor(
