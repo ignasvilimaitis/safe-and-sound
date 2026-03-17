@@ -20,19 +20,23 @@ export class AudioPlayerComponent implements AfterViewInit {
   @ViewChild('audioPlayer')
   audioPlayer!: ElementRef<HTMLAudioElement>;
 
-  currentTime = '0:00';
-  duration = '0.00';
+  currentTime = 0;
+  duration = 0;
+
+  currentTimeText = '0:00';
+  durationText = '0.00';
 
   ngAfterViewInit() {
     const player = this.audioPlayer.nativeElement;
-
+    
     player.addEventListener('timeupdate', () => {
       const minutes = Math.floor(player.currentTime / 60);
       const seconds = Math.floor(player.currentTime % 60)
         .toString()
         .padStart(2, '0');
 
-      this.currentTime = `${minutes}:${seconds}`;
+      this.currentTimeText = `${minutes}:${seconds}`;
+      this.currentTime = player.currentTime;
     });
 
     player.addEventListener('loadedmetadata', () => {
@@ -41,7 +45,8 @@ export class AudioPlayerComponent implements AfterViewInit {
       .toString()
       .padStart(2, '0');
 
-      this.duration = `${minutes}:${seconds}`;
+      this.durationText = `${minutes}:${seconds}`;
+      this.duration = player.duration;
 });
   }
   
