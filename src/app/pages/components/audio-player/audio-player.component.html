@@ -12,9 +12,9 @@
   </div>
 
   <div class="progress">
-      <span class="time">1:12</span>
-      <input type="range" />
-      <span class="time">3:45</span>
+      <span class="time">{{currentTime}}</span>
+      <input type="range" id="length-slider" min="0" max="{{duration}}" value="{{currentTime}}" step="any" />
+      <span class="time">{{duration}}</span>
     </div>
   <div class="controls">
     <button class="control-button">
