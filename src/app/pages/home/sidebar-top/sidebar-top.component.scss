@@ -18,3 +18,14 @@
     flex: 1;
 
 }
+.main-display {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 80px;
+  overflow-y: auto;    
+  gap: 15px;
+  scrollbar-width: none;
+}
+.song-card {
+    padding: 10px;
+}

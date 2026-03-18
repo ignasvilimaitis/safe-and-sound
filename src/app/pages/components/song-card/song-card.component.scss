@@ -1,6 +1,6 @@
 .song-image {
-    width: 90px;
-    height: 90px;
+    width: 70px;
+    height: 70px;
     padding: 0px 16px 0px 0px;
 }
 
@@ -13,14 +13,14 @@
   align-items: center;
   padding: 8px;
   width: 370px;
-  cursor: pointer;
-  :hover {
-      background-color: #a19f9f;
-      transition: 0.3s;
-    }
   font-family: 'Yaldevi Colombo Light Regular';
+  transition: all 0.3s ease;
 }
 
+.song-card-button:hover {
+  cursor: pointer;
+  background-color: #707070;
+}
 
 .song-info {
   display: flex;
