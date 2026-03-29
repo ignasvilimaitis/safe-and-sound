@@ -3,6 +3,7 @@
     flex-direction: column;
     height: 100%;
     flex: 1;
+    overflow: hidden;
 }
 
 .sidebar-top {
@@ -10,13 +11,15 @@
     color: #FFFFFF; 
     margin: 16px 0px 0px 16px;
     border-radius: 8px 0px 0px 0px;
+    width: 400px;
+
     flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 400px;
-    flex: 1;
-
+    
+    flex:1;
+    min-height: 0;
 }
 .main-display {
   display: grid;
