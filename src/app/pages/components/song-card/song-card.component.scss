@@ -1,0 +1,65 @@
+.song-image {
+    width: 70px;
+    height: 70px;
+    padding: 0px 16px 0px 0px;
+}
+
+
+.song-card-button {
+  background-color: #222222;
+  border:none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px;
+  width: 370px;
+  font-family: 'Yaldevi Colombo Light Regular';
+  transition: all 0.3s ease;
+}
+
+.song-card-button:hover {
+  cursor: pointer;
+  background-color: #707070;
+}
+
+.song-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-part {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.bottom-part {
+    padding-bottom: 6px;
+    display: flex;
+    flex-direction: row;
+}
+
+.song-artist {
+  color: #FFFFFF;
+  font-size: 20px;
+  padding-right: 5px;
+  margin: 0;
+  font-weight: normal;
+
+}
+
+.song-album {
+  color: #FFFFFF;
+  font-size: 20px;
+  margin: 0;
+  font-weight: normal;
+}
+
+.song-title {
+  color: #FFFFFF;
+  font-size: 20px;
+  margin: 0;
+  font-weight: normal;
+}
+
