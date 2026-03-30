@@ -1,6 +1,7 @@
 import {app, BrowserWindow, screen} from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
+import { initDb } from '../src/app/core/services/database/database';
 
 let win: BrowserWindow | null = null;
 const args = process.argv.slice(1),
@@ -33,6 +34,7 @@ function createWindow(): BrowserWindow {
       const reloaderFn = (reloader as any).default || reloader;
       reloaderFn(module);
     });
+    initDb();
     win.loadURL('http://localhost:4200');
   } else {
     // Path when running electron executable
