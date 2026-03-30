@@ -1,14 +1,16 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { PlayerService } from '../../../core/services/music-player/player.service';
+import { VolumeService } from '../../../core/services/music-player/volume.service';
 import { Track } from '../../../shared/models/track.model';
+import { NavigationBarComponent } from '../../home/navigation-bar/navigation-bar.component';
 
 
 
 @Component({
   selector: 'app-audio-player',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [TranslateModule, NavigationBarComponent],
   templateUrl: './audio-player.component.html',
   styleUrl: './audio-player.component.scss',
 })
@@ -25,6 +27,12 @@ export class AudioPlayerComponent implements AfterViewInit {
 
   currentTimeText = '0:00';
   durationText = '0.00';
+
+  ngOnInit() {
+    this.volumeService.volume$.subscribe(volume => {
+      this.audioPlayer.nativeElement.volume = volume/100;
+    })
+  }
 
   ngAfterViewInit() {
     const player = this.audioPlayer.nativeElement;
@@ -47,10 +55,9 @@ export class AudioPlayerComponent implements AfterViewInit {
 
       this.durationText = `${minutes}:${seconds}`;
       this.duration = player.duration;
-});
+    });
   }
   
-
   playMusic() {
     const player = this.audioPlayer.nativeElement;
     if (this.isPlaying == true) {
@@ -65,7 +72,7 @@ export class AudioPlayerComponent implements AfterViewInit {
     
   }
 
-  constructor(private playerService: PlayerService) {
+  constructor(private playerService: PlayerService, private volumeService : VolumeService) {
     this.playerService.currentTrack$.subscribe(track => {
       this.currentTrack = track;
     });
