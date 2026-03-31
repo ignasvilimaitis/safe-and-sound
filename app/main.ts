@@ -1,7 +1,10 @@
-import {app, BrowserWindow, screen} from 'electron';
+import {app, BrowserWindow, screen, ipcMain, dialog} from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
+import * as mm from 'music-metadata';
+import { v4 as uuidv4 } from 'uuid';
 import { initDb } from '../src/app/core/services/database/database';
+import { Track } from '../src/app/shared/models/track.model';
 
 let win: BrowserWindow | null = null;
 const args = process.argv.slice(1),
@@ -34,7 +37,6 @@ function createWindow(): BrowserWindow {
       const reloaderFn = (reloader as any).default || reloader;
       reloaderFn(module);
     });
-    initDb();
     win.loadURL('http://localhost:4200');
   } else {
     // Path when running electron executable
@@ -66,7 +68,10 @@ try {
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
   // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
-  app.on('ready', () => setTimeout(createWindow, 400));
+app.on('ready', () => setTimeout(() => {
+  initDb();
+  createWindow();
+}, 400));
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
@@ -89,3 +94,30 @@ try {
   // Catch Error
   // throw e;
 }
+
+
+ipcMain.handle('open-file-dialog', async (event) => {
+  const { filePaths } = await dialog.showOpenDialog({
+    properties: ['openFile', 'multiSelections'],
+    filters: [
+      { name: 'Audio Files', extensions: ['mp3', 'wav', 'flac'] }
+    ]
+  });
+  if (!filePaths.length) return [];
+
+  const tracks: Track[] = await Promise.all(filePaths.map(async (filePath) => {
+    const metadata = await mm.parseFile(filePath);
+    const track: Track = {
+      id: uuidv4(),
+      title: metadata.common.title || path.basename(filePath),
+      artist: metadata.common.artist || 'Unknown Artist',
+      album: metadata.common.album || 'Unknown Album',
+      path: filePath,
+      duration: metadata.format.duration || 0,
+      addedAt: Date.now(),
+      modifiedAt: Date.now(),
+    };
+    return track;
+  }));
+  return tracks;
+});

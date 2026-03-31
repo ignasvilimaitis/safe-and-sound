@@ -15,6 +15,10 @@ export class NavigationBarComponent {
   readValue(input: HTMLInputElement) {
     const value = +input.value;
     this.volumeService.setVolume(value);
+
+  }
+
+  importSong () {
     
-}
+  }
 }

@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 import { ipcRenderer, webFrame } from 'electron';
 import * as childProcess from 'child_process';
 import * as fs from 'fs';
-import { initDb } from '../database/database';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,6 @@ export class ElectronService {
   fs!: typeof fs;
 
   constructor() {
-    initDb();
     // Conditional imports
     if (this.isElectron) {
       this.ipcRenderer = (window as any).require('electron').ipcRenderer;

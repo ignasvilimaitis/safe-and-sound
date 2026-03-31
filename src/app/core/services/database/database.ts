@@ -1,10 +1,8 @@
-import { app } from 'electron'
-import path from 'path'
 import { Track } from '../../../shared/models/track.model';
+import { app } from 'electron';
+import * as path from 'path';
 
-const Database = require('better-sqlite3');
-
-const db = new Database(path.join(app.getPath('userData'), 'app.db'))
+const db = require('better-sqlite3')(path.join(app.getPath('userData'), 'safe-and-sound.db'));
 
 export function initDb() {
   db.exec(`
