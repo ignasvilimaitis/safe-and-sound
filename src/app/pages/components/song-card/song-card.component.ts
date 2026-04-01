@@ -1,31 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { Track } from '../../../shared/models/track.model';
 import { PlayerService } from '../../../core/services/music-player/player.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-song-card',
-  imports: [TranslateModule],
+  imports: [TranslateModule, CommonModule],
   templateUrl: './song-card.component.html',
   styleUrl: './song-card.component.scss',
 })
 export class SongCardComponent {
-
-  private track : Track = {
-    path: "assets/icons/safeandsound.jpg",
-    audio: "assets/test-songs/1.mp3",
-    id: '1',
-    title: 'Safe and Sound',
-    artist: 'Midrift',
-    album: 'Safe and Sound',
-    duration: 240,
-      addedAt: Date.now(),
-      modifiedAt: Date.now()
-  };
+  @Input() track: any
 
   onClick () {
     this.playerService.setTrack(this.track);
-    console.log('Track set to :', this.track);
+        console.log('Track set to :', this.track);
   }
 
   constructor(

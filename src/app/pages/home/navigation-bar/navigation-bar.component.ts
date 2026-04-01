@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { VolumeService } from '../../../core/services/music-player/volume.service';
+import { TrackUploadService } from '../../../core/services/music-player/trackupload.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -10,7 +11,7 @@ import { VolumeService } from '../../../core/services/music-player/volume.servic
   styleUrl: './navigation-bar.component.scss',
 })
 export class NavigationBarComponent {
-  constructor(private volumeService: VolumeService) {}
+  constructor(private volumeService: VolumeService, private trackUploadService: TrackUploadService) {}
 
   readValue(input: HTMLInputElement) {
     const value = +input.value;
@@ -19,6 +20,6 @@ export class NavigationBarComponent {
   }
 
   importSong () {
-    
+    this.trackUploadService.uploadTracks();
   }
 }

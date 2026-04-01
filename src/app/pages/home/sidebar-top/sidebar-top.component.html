@@ -3,32 +3,9 @@
     hello
   </h2>
   <div class="main-display">
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-    <app-song-card class="song-card"></app-song-card>
-
+    <app-song-card
+      *ngFor="let track of tracks"
+      [track]="track">
+    </app-song-card>
   </div>
 </div>

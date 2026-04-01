@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as mm from 'music-metadata';
 import { v4 as uuidv4 } from 'uuid';
-import { initDb } from '../src/app/core/services/database/database';
+import { initDb, insertTrack, getAllTracks } from './database/database';
 import { Track } from '../src/app/shared/models/track.model';
 
 let win: BrowserWindow | null = null;
@@ -96,16 +96,18 @@ app.on('ready', () => setTimeout(() => {
 }
 
 
-ipcMain.handle('open-file-dialog', async (event) => {
+ipcMain.handle('open-file-dialog', async (event) => { // TODO: Move this to a separate file
   const { filePaths } = await dialog.showOpenDialog({
     properties: ['openFile', 'multiSelections'],
     filters: [
       { name: 'Audio Files', extensions: ['mp3', 'wav', 'flac'] }
     ]
-  });
+});
   if (!filePaths.length) return [];
+  
 
   const tracks: Track[] = await Promise.all(filePaths.map(async (filePath) => {
+
     const metadata = await mm.parseFile(filePath);
     const track: Track = {
       id: uuidv4(),
@@ -119,5 +121,16 @@ ipcMain.handle('open-file-dialog', async (event) => {
     };
     return track;
   }));
+  return tracks;
+});
+
+
+ipcMain.handle('save-tracks', async (event, tracks) => {
+  for (const track of tracks) {
+  insertTrack(track);
+  }})
+
+ipcMain.handle('get-tracks', async (event) => {
+  const tracks = await getAllTracks();
   return tracks;
 });

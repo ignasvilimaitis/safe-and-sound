@@ -28,6 +28,12 @@ export class AudioPlayerComponent implements AfterViewInit {
   currentTimeText = '0:00';
   durationText = '0.00';
 
+    constructor(private playerService: PlayerService, private volumeService : VolumeService) {
+    this.playerService.currentTrack$.subscribe(track => {
+      console.log('Received track in audio player component:', track);
+      this.currentTrack = track;
+    });
+  }
   ngOnInit() {
     this.volumeService.volume$.subscribe(volume => {
       this.audioPlayer.nativeElement.volume = volume/100;
@@ -72,11 +78,6 @@ export class AudioPlayerComponent implements AfterViewInit {
     
   }
 
-  constructor(private playerService: PlayerService, private volumeService : VolumeService) {
-    this.playerService.currentTrack$.subscribe(track => {
-      this.currentTrack = track;
-    });
-  }
 
   }
 
