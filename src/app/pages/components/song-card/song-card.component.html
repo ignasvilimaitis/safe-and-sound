@@ -1,5 +1,5 @@
 <button class="song-card-button" (click)="onClick()">
-  <img src= {{track.path}} alt="Song Image" class="song-image">
+  <img [src]="track.artworkUrl" alt="Song Image" class="song-image">
   <div class="song-info">
     <div class="top-part">
       <h3 class="song-artist">{{ track.artist }} • </h3>

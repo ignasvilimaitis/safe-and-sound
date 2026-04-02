@@ -12,6 +12,7 @@ function initDb() {
       title TEXT,
       artist TEXT,
       album TEXT,
+      artworkUrl TEXT,
       path TEXT,
       duration INTEGER,
       addedAt INTEGER,
@@ -21,7 +22,7 @@ function initDb() {
 }
 function insertTrack(track) {
     const stmt = db.prepare(`
-    INSERT INTO tracks VALUES (@id, @title, @artist, @album, @path, @duration, @addedAt, @modifiedAt)
+    INSERT INTO tracks VALUES (@id, @title, @artist, @album, @artworkUrl, @path, @duration, @addedAt, @modifiedAt)
   `);
     stmt.run(track);
 }

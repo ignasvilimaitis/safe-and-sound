@@ -5,10 +5,25 @@ import * as mm from 'music-metadata';
 import { v4 as uuidv4 } from 'uuid';
 import { initDb, insertTrack, getAllTracks } from './database/database';
 import { Track } from '../src/app/shared/models/track.model';
+import {uint8ArrayToBase64} from 'uint8array-extras';
+
+const appDataPath = app.getPath('userData');
 
 let win: BrowserWindow | null = null;
 const args = process.argv.slice(1),
   serve = args.some(val => val === '--serve');
+
+function saveMp3(fileName: string, data: Buffer) {
+  if(!fs.existsSync(path.join(appDataPath, 'tracks'))) {
+    fs.mkdirSync(path.join(appDataPath, 'tracks'));
+  }
+  const filePath = path.join(appDataPath, 'tracks', fileName);
+  fs.writeFileSync(filePath, data);
+}
+
+function picturetoData(picture: mm.IPicture[]) {
+  return `data:${picture[0].format};base64,${uint8ArrayToBase64(picture[0].data)}`;
+}
 
 function createWindow(): BrowserWindow {
 
@@ -104,17 +119,21 @@ ipcMain.handle('open-file-dialog', async (event) => { // TODO: Move this to a se
     ]
 });
   if (!filePaths.length) return [];
-  
 
   const tracks: Track[] = await Promise.all(filePaths.map(async (filePath) => {
 
     const metadata = await mm.parseFile(filePath);
+    const artworkUrl = picturetoData(metadata.common.picture || []);
+  
+    saveMp3(path.basename(filePath), fs.readFileSync(filePath));
+    
     const track: Track = {
       id: uuidv4(),
       title: metadata.common.title || path.basename(filePath),
       artist: metadata.common.artist || 'Unknown Artist',
       album: metadata.common.album || 'Unknown Album',
-      path: filePath,
+      artworkUrl: artworkUrl,
+      path: path.join(appDataPath, 'tracks', path.basename(filePath)),
       duration: metadata.format.duration || 0,
       addedAt: Date.now(),
       modifiedAt: Date.now(),
