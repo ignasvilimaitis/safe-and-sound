@@ -6,24 +6,13 @@ import { v4 as uuidv4 } from 'uuid';
 import { initDb, insertTrack, getAllTracks } from './database/database';
 import { Track } from '../src/app/shared/models/track.model';
 import {uint8ArrayToBase64} from 'uint8array-extras';
+import { initIpc } from './ipc';
 
 const appDataPath = app.getPath('userData');
 
 let win: BrowserWindow | null = null;
 const args = process.argv.slice(1),
   serve = args.some(val => val === '--serve');
-
-function saveMp3(fileName: string, data: Buffer) {
-  if(!fs.existsSync(path.join(appDataPath, 'tracks'))) {
-    fs.mkdirSync(path.join(appDataPath, 'tracks'));
-  }
-  const filePath = path.join(appDataPath, 'tracks', fileName);
-  fs.writeFileSync(filePath, data);
-}
-
-function picturetoData(picture: mm.IPicture[]) {
-  return `data:${picture[0].format};base64,${uint8ArrayToBase64(picture[0].data)}`;
-}
 
 function createWindow(): BrowserWindow {
 
@@ -86,6 +75,7 @@ try {
 app.on('ready', () => setTimeout(() => {
   initDb();
   createWindow();
+  initIpc();
 }, 400));
 
   // Quit when all windows are closed.
@@ -109,47 +99,3 @@ app.on('ready', () => setTimeout(() => {
   // Catch Error
   // throw e;
 }
-
-
-ipcMain.handle('open-file-dialog', async (event) => { // TODO: Move this to a separate file
-  const { filePaths } = await dialog.showOpenDialog({
-    properties: ['openFile', 'multiSelections'],
-    filters: [
-      { name: 'Audio Files', extensions: ['mp3', 'wav', 'flac'] }
-    ]
-});
-  if (!filePaths.length) return [];
-
-  const tracks: Track[] = await Promise.all(filePaths.map(async (filePath) => {
-
-    const metadata = await mm.parseFile(filePath);
-    const artworkUrl = picturetoData(metadata.common.picture || []);
-  
-    saveMp3(path.basename(filePath), fs.readFileSync(filePath));
-    
-    const track: Track = {
-      id: uuidv4(),
-      title: metadata.common.title || path.basename(filePath),
-      artist: metadata.common.artist || 'Unknown Artist',
-      album: metadata.common.album || 'Unknown Album',
-      artworkUrl: artworkUrl,
-      path: path.join(appDataPath, 'tracks', path.basename(filePath)),
-      duration: metadata.format.duration || 0,
-      addedAt: Date.now(),
-      modifiedAt: Date.now(),
-    };
-    return track;
-  }));
-  return tracks;
-});
-
-
-ipcMain.handle('save-tracks', async (event, tracks) => {
-  for (const track of tracks) {
-  insertTrack(track);
-  }})
-
-ipcMain.handle('get-tracks', async (event) => {
-  const tracks = await getAllTracks();
-  return tracks;
-});

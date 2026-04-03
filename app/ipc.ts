@@ -7,8 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { insertTrack, getAllTracks } from './database/database';
 import { Track } from '../src/app/shared/models/track.model';
 import { uint8ArrayToBase64 } from 'uint8array-extras';
-import { DatabaseService } from '../src/app/core/services/database/database.service';
-import { get } from 'http';
+
 
 const appDataPath = app.getPath('userData');
 

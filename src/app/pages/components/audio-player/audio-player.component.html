@@ -12,7 +12,7 @@
   </div>
   <div class="progress">
       <span class="time">{{currentTimeText}}</span>
-      <input type="range" id="length-slider" min="0" max="{{duration}}" value="{{currentTime}}" step="any" />
+      <input type="range" (input)="adjustSlider()" class="length-slider" min="0" max="{{duration}}" value="{{currentTime}}" step="any" defaultValue="0" />
       <span class="time">{{durationText}}</span>
     </div>
   <div class="controls">

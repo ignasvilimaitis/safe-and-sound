@@ -13,14 +13,13 @@ import { CommonModule } from '@angular/common';
   standalone: true
 })
 export class SidebarTopComponent implements OnInit{
-  tracks: any[] = [];
+  tracks$ = this.databaseService.tracks$;
 
   constructor(private databaseService: DatabaseService) {}
 
   async ngOnInit() {
-    console.log('Fetching tracks in sidebar-top component...');
-    this.tracks = await this.databaseService.getTracks();
-    console.log('Tracks in sidebar-top:', this.tracks);
+    await this.databaseService.getTracks();
+    console.log('Tracks in sidebar-top:', this.tracks$);
     };
   }
 

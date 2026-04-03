@@ -28,7 +28,7 @@ export class AudioPlayerComponent implements AfterViewInit {
   currentTimeText = '0:00';
   durationText = '0.00';
 
-    constructor(private playerService: PlayerService, private volumeService : VolumeService) {
+  constructor(private playerService: PlayerService, private volumeService : VolumeService) {
     this.playerService.currentTrack$.subscribe(track => {
       console.log('Received track in audio player component:', track);
       this.currentTrack = track;
@@ -39,6 +39,7 @@ export class AudioPlayerComponent implements AfterViewInit {
       this.audioPlayer.nativeElement.volume = volume/100;
     })
   }
+
 
   ngAfterViewInit() {
     const player = this.audioPlayer.nativeElement;
@@ -51,6 +52,7 @@ export class AudioPlayerComponent implements AfterViewInit {
 
       this.currentTimeText = `${minutes}:${seconds}`;
       this.currentTime = player.currentTime;
+      
     });
 
     player.addEventListener('loadedmetadata', () => {

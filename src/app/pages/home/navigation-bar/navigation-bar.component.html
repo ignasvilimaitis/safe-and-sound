@@ -1,8 +1,8 @@
 <div class="navigation-bar">
   <div class="home-buttons">
     <img src = "assets/nav-bar-icons/volume.svg" class = volume/> 
-      <div class="progress">
-      <input #volumeSlider (input) = readValue(volumeSlider) type="range" min="0" max="100" step="any" />
+      <div class="volume-control">
+      <input #volumeSlider (input) = readValue(volumeSlider) class="volume-slider" type="range" min="0" max="100" step="any" />
     </div>
     <button class="control-button">
       <img src="assets/nav-bar-icons/group.svg" class="group-button" />
