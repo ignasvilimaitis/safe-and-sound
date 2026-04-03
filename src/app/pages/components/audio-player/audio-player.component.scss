@@ -50,15 +50,15 @@
   flex: 1;
 }
 
-.length-slider {
+.audio-slider {
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
     height:5px;
     background: linear-gradient(
     to right,
-    #000000 var(--fill, 0%),   /* filled portion */
-    #ffffff var(--fill, 0%)    /* unfilled portion */
+    #000000 var(--fill, 0%),
+    #ffffff var(--fill, 0%)   
     );
     outline: none;
     -webkit-transition: .2s;
@@ -66,10 +66,10 @@
 
 }
 
-.length-slider::-webkit-slider-thumb {
+.audio-slider::-webkit-slider-thumb {
   -webkit-appearance: none; 
   appearance: none;
-  width: 10px; 
+  width: 0px; 
   height: 5px; 
   background: #000000; 
   cursor: pointer; 

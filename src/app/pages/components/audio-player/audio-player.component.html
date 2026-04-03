@@ -12,12 +12,12 @@
   </div>
   <div class="progress">
       <span class="time">{{currentTimeText}}</span>
-      <input type="range" (input)="adjustSlider()" class="length-slider" min="0" max="{{duration}}" value="{{currentTime}}" step="any" defaultValue="0" />
+      <input type="range" class="audio-slider" min="1" [max]="duration || 1" [value]="currentTime" step="any" defaultValue="0" />
       <span class="time">{{durationText}}</span>
     </div>
   <div class="controls">
     <button class="control-button">
-      <img src="assets/player-icons/10secBack.svg" class="control-button-10sec-back" />
+      <img src="assets/player-icons/10secBack.svg" (click)="tenSecBack()" class="control-button-10sec-back" />
     </button>
     <button class="control-button">
       <img src="assets/player-icons/shuffle.svg" class="control-button-shuffle" />
@@ -35,7 +35,7 @@
       <img src="assets/player-icons/repeat.svg" class="control-button-repeat" />
     </button>
       <button class="control-button">
-      <img src="assets/player-icons/10secForward.svg" class="control-button-10sec-forward" />
+      <img src="assets/player-icons/10secForward.svg" (click)= "tenSecForward()" class="control-button-10sec-forward" />
     </button>
   </div>
 </div>

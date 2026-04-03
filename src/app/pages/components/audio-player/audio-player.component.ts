@@ -34,6 +34,8 @@ export class AudioPlayerComponent implements AfterViewInit {
       this.currentTrack = track;
     });
   }
+
+
   ngOnInit() {
     this.volumeService.volume$.subscribe(volume => {
       this.audioPlayer.nativeElement.volume = volume/100;
@@ -52,7 +54,11 @@ export class AudioPlayerComponent implements AfterViewInit {
 
       this.currentTimeText = `${minutes}:${seconds}`;
       this.currentTime = player.currentTime;
-      
+      const slider = document.querySelector('.audio-slider') as HTMLElement;
+      console.log('Current time:', this.currentTime, 'Duration:', this.duration);
+      const fill = ((player.currentTime / (player.duration || 1)) * 100);
+      console.log('Fill percentage:', fill);
+      slider?.style.setProperty('--fill', `${fill}%`);
     });
 
     player.addEventListener('loadedmetadata', () => {
@@ -61,6 +67,7 @@ export class AudioPlayerComponent implements AfterViewInit {
       .toString()
       .padStart(2, '0');
 
+      
       this.durationText = `${minutes}:${seconds}`;
       this.duration = player.duration;
     });
@@ -77,9 +84,15 @@ export class AudioPlayerComponent implements AfterViewInit {
           this.isPlaying = true;
           document.getElementById('play-button')?.setAttribute('src', 'assets/player-icons/pause.svg');
     }
-    
   }
 
-
+  tenSecBack() {
+    const player = this.audioPlayer.nativeElement;
+    player.currentTime = Math.max(0, player.currentTime - 10);
   }
 
+  tenSecForward() {
+    const player = this.audioPlayer.nativeElement;
+    player.currentTime = Math.min(player.duration, player.currentTime + 10);
+  }
+}
