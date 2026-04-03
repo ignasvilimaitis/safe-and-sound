@@ -80,7 +80,7 @@
     "@vitest/coverage-v8": "4.0.15",
     "@vitest/ui": "4.0.15",
     "conventional-changelog": "7.1.1",
-    "electron": "39.2.5",
+    "electron": "39.8.6",
     "electron-builder": "26.7.0",
     "electron-debug": "4.1.0",
     "electron-reloader": "1.2.3",
