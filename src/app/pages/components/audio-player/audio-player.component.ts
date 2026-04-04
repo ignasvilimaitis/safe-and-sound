@@ -28,6 +28,8 @@ export class AudioPlayerComponent implements AfterViewInit {
   currentTimeText = '0:00';
   durationText = '0.00';
 
+  private player!: HTMLAudioElement;
+
   constructor(private playerService: PlayerService, private volumeService : VolumeService) {
     this.playerService.currentTrack$.subscribe(track => {
       console.log('Received track in audio player component:', track);
@@ -44,55 +46,61 @@ export class AudioPlayerComponent implements AfterViewInit {
 
 
   ngAfterViewInit() {
-    const player = this.audioPlayer.nativeElement;
-    
-    player.addEventListener('timeupdate', () => {
-      const minutes = Math.floor(player.currentTime / 60);
-      const seconds = Math.floor(player.currentTime % 60)
+        this.player = this.audioPlayer.nativeElement;
+    this.player.addEventListener('timeupdate', () => {
+      const minutes = Math.floor(this.player.currentTime / 60);
+      const seconds = Math.floor(this.player.currentTime % 60)
         .toString()
         .padStart(2, '0');
 
       this.currentTimeText = `${minutes}:${seconds}`;
-      this.currentTime = player.currentTime;
+      this.currentTime = this.player.currentTime;
       const slider = document.querySelector('.audio-slider') as HTMLElement;
       console.log('Current time:', this.currentTime, 'Duration:', this.duration);
-      const fill = ((player.currentTime / (player.duration || 1)) * 100);
-      console.log('Fill percentage:', fill);
+      const fill = ((this.player.currentTime / (this.player.duration || 1)) * 100);
       slider?.style.setProperty('--fill', `${fill}%`);
     });
 
-    player.addEventListener('loadedmetadata', () => {
-      const minutes = Math.floor(player.duration / 60);
-      const seconds = Math.floor(player.duration % 60)
+    this.player.addEventListener('play', () => {
+      document.getElementById('play-button')?.setAttribute('src', 'assets/player-icons/pause.svg');
+      this.isPlaying = true;
+    });
+
+    this.player.addEventListener('pause', () => {
+      document.getElementById('play-button')?.setAttribute('src', 'assets/player-icons/play.svg');
+      this.isPlaying = false;
+    })
+
+    this.player.addEventListener('loadedmetadata', () => {
+      const minutes = Math.floor(this.player.duration / 60);
+      const seconds = Math.floor(this.player.duration % 60)
       .toString()
       .padStart(2, '0');
 
       
       this.durationText = `${minutes}:${seconds}`;
-      this.duration = player.duration;
+      this.duration = this.player.duration;
     });
   }
   
   playMusic() {
-    const player = this.audioPlayer.nativeElement;
-    if (this.isPlaying == true) {
-          player.pause();
-          document.getElementById('play-button')?.setAttribute('src', 'assets/player-icons/play.svg');
-          this.isPlaying = false;
+
+    if (this.isPlaying) {
+      this.player.pause();
     } else {
-          player.play();
-          this.isPlaying = true;
-          document.getElementById('play-button')?.setAttribute('src', 'assets/player-icons/pause.svg');
+      this.player.play();
     }
   }
 
+  useSlider(event: any) {
+    this.player.currentTime = event.target.value;
+  }
+
   tenSecBack() {
-    const player = this.audioPlayer.nativeElement;
-    player.currentTime = Math.max(0, player.currentTime - 10);
+    this.player.currentTime = Math.max(0, this.player.currentTime - 10);
   }
 
   tenSecForward() {
-    const player = this.audioPlayer.nativeElement;
-    player.currentTime = Math.min(player.duration, player.currentTime + 10);
+    this.player.currentTime = Math.min(this.player.duration, this.player.currentTime + 10);
   }
 }
