@@ -11,12 +11,18 @@ import { TrackUploadService } from '../../../core/services/music-player/trackupl
   styleUrl: './navigation-bar.component.scss',
 })
 export class NavigationBarComponent {
-  constructor(private volumeService: VolumeService, private trackUploadService: TrackUploadService) {}
+  constructor(private volumeService: VolumeService, private trackUploadService: TrackUploadService) {
+    const volume = this.volumeService.volume$;
+    const volumeSlider = document.getElementById('volumeSlider');
+    volumeSlider?.style.setProperty('--fill', `${volume}%`);
+  }
 
-  readValue(input: HTMLInputElement) {
+  adjustSlider(input: HTMLInputElement) {
     const value = +input.value;
+    console.log(value);
     this.volumeService.setVolume(value);
-
+      const volumeSlider = document.getElementById('volumeSlider');
+      volumeSlider?.style.setProperty('--fill', `${value}%`);
   }
 
   importSong () {
