@@ -10,4 +10,8 @@ export class VolumeService {
   setVolume(value: number) {
     this.volume.next(value);
   }
+
+  getVolume(): number {
+    return this.volume.getValue();
+  }
 }
