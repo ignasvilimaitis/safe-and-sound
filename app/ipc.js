@@ -26,7 +26,7 @@ function saveMp3(fileName, data) {
     fs.writeFileSync(filePath, data);
 }
 function picturetoData(picture) {
-    return `data:${picture[0].format};base64,${(0, uint8array_extras_1.uint8ArrayToBase64)(picture[0].data)}`; // TODO: Perhaps change from Base64 to a local file.
+    return `data:${picture[0].format};base64,${(0, uint8array_extras_1.uint8ArrayToBase64)(picture[0].data)}`;
 }
 function initIpc() {
     electron_1.ipcMain.handle('open-file-dialog', (event) => __awaiter(this, void 0, void 0, function* () {

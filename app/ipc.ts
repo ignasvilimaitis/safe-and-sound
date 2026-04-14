@@ -19,13 +19,14 @@ function saveMp3(fileName: string, data: Buffer) {
     fs.writeFileSync(filePath, data);
 }
 
-function picturetoData(picture: mm.IPicture[]) {
-    return `data:${picture[0].format};base64,${uint8ArrayToBase64(picture[0].data)}`; // TODO: Perhaps change from Base64 to a local file.
+function picturetoData(picture: mm.IPicture[]): string {
+    return `data:${picture[0].format};base64,${uint8ArrayToBase64(picture[0].data)}`;
 }
 
 
+
 export function initIpc() {
-    ipcMain.handle('open-file-dialog', async (event) => { // TODO: Move this to a separate file
+    ipcMain.handle('open-file-dialog', async (event) => {
         const { filePaths } = await dialog.showOpenDialog({
             properties: ['openFile', 'multiSelections'],
             filters: [
