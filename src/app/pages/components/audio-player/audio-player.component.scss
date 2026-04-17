@@ -1,6 +1,7 @@
 :host {
   display: block;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .time {
@@ -20,12 +21,14 @@
     flex-direction: row;
     align-items: center;
     width: 100%;
+    overflow:hidden;
 }
 
 .player-bar {
     display: flex;
     align-items: center;
     width: 100%;
+    font-weight:bold;
 }
 
 .shuffle-button {
@@ -77,9 +80,13 @@
 
 
 .track-info {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 6px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 6px;
+    font-size: 20px;
+    min-width:0;
+    overflow: hidden;  
+    flex:1;
 }
 
 .main {
@@ -87,6 +94,7 @@
     flex-direction: column;
     align-items: flex-start;
     flex: 1;
+    min-width:0;
 }
 
 .center {
@@ -94,12 +102,13 @@
     flex-direction: row;
     align-items: center;
 }
-.track-info {
-    font-size: 20px;
-}
+
 
 .artist {
     padding: 10px 0px 4px 0px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
 }
 
 .control-button {
