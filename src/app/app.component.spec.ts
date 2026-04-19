@@ -4,6 +4,7 @@ import {TranslateModule} from '@ngx-translate/core';
 import {ElectronService} from './core/services';
 import {provideRouter} from '@angular/router';
 
+
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
