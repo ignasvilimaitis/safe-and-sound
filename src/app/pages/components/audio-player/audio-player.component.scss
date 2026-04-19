@@ -5,6 +5,7 @@
 }
 
 .time {
+  font-size: 20px;
   width: 40px;
   text-align: center;
 }
@@ -38,8 +39,6 @@
     border: none;
     cursor: pointer;
 }
-
-
 
 .progress {
   display: flex;
@@ -92,7 +91,7 @@
 .main {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     flex: 1;
     min-width:0;
 }
@@ -103,6 +102,11 @@
     align-items: center;
 }
 
+.controls {
+    display:flex;
+    align-items: center;
+    padding-top:20px;
+}
 
 .artist {
     padding: 10px 0px 4px 0px;
