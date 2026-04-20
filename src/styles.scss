@@ -7,6 +7,17 @@
   src: local('Yaldevi Colombo Light Regular'), url('YaldeviColombo-Light.woff') format('woff');
     
 }
+:root {
+  --color-background-primary: #222222;
+  --color-background-secondary: #333333;
+  --color-background-info: #555555;
+  --color-border-primary: #444444;
+  --color-border-secondary: #555555;
+  --color-border-info: #777777;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #CCCCCC;
+  --color-text-info: #AAAAAA;
+}
 html, body {
   margin: 0;
   padding: 0;
