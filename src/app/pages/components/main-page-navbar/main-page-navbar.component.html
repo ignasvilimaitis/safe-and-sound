@@ -4,6 +4,8 @@
         [label]="item.label"
         [path]="item.path"
         [isActive]="activePath === item.path"
-        (clicked)="onNavItemClicked(item.path)"
+        (click)="onClicked(item.path)"
       />
 </nav>
+
+<router-outlet></router-outlet>

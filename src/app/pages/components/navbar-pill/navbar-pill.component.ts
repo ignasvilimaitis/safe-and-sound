@@ -13,9 +13,4 @@ export class NavbarPillComponent {
   @Input() isActive = false;
 
   constructor(private router: Router) {}
-
-
-  navigate() {
-    this.router.navigate([this.path]);
-  }
 }

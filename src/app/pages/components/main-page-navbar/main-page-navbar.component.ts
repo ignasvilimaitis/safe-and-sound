@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { RouterLink, RouterOutlet} from '@angular/router';
+import { Router, RouterLink, RouterOutlet} from '@angular/router';
 import { NavbarPillComponent } from '../navbar-pill/navbar-pill.component';
 import {CommonModule} from '@angular/common';
 
@@ -13,7 +13,7 @@ import {CommonModule} from '@angular/common';
 })
 export class MainPageNavbarComponent implements OnInit {
 
-  activePath: string = '/recently-added';
+  activePath: string = '/recently-added'; // default active path
 
   navItems = [
     { label: 'Recently Added', path: '/recently-added' },
@@ -21,15 +21,17 @@ export class MainPageNavbarComponent implements OnInit {
     { label: 'Added Albums', path: '/added-albums' },
   ];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
     ngOnInit(): void {
     console.log('MainPageNavbarComponent INIT');
     console.log('Current active path:', this.activePath);
   }
 
-  onNavItemClicked(path: string) {
-    console.log('Nav item clicked:', path);
+  onClicked(path: string) {
     this.activePath = path;
+    console.log('New active path:', path);
+    this.router.navigate([path]);
+
   }
 }

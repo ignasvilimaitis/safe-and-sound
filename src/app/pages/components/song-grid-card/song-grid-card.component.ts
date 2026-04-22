@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { Track } from '../../../shared/models/track.model';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-song-grid-card',
@@ -9,13 +8,22 @@ import { Track } from '../../../shared/models/track.model';
   standalone: true,
 })
 export class SongGridCardComponent {
- track: Track = {
-  id: '',
-  title: 'Unknown Title',
-  artist: 'Unknown Artist',
-  album: 'Unknown Album',
-  duration: 0,
-  path: '',
-  addedAt: 0,
-  };
+  @Input() track: any
+
+  constructor() {
+    if (this.track == null) {
+      this.track = {
+        id: '1',
+        title: 'Sample Track',
+        artist: 'Sample Artist',
+        album: 'Sample Album',
+        artworkUrl: 'https://via.placeholder.com/150',
+        path: '',
+        duration: 0,
+        addedAt: Date.now(),
+      }
+  }
+    
+  }
+
 }

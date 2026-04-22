@@ -1,12 +1,8 @@
 <button class="song-grid-button">
   <img [src]="track.artworkUrl" alt="Song Image" class="song-image">
   <div class="song-info">
-    <div class="top-part">
-      <p class="song-artist">{{ track.artist + ' • ' }}</p>
-      <p class="song-album">{{ track.album }}</p>
-    </div>
-    <div class="bottom-part">
-      <h3 class="song-title">{{ track.title }}</h3>
-    </div>
+        <div class="song-artist">{{ track.artist }}</div>
+    <div class="song-title">{{ track.title }}</div>
+
   </div>
 </button>

@@ -19,7 +19,6 @@ export class SidebarTopComponent implements OnInit{
 
   async ngOnInit() {
     await this.databaseService.getTracks();
-    console.log('Tracks in sidebar-top:', this.tracks$);
     };
   }
 

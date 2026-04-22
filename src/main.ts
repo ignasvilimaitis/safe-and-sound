@@ -13,9 +13,9 @@ import {provideTranslateHttpLoader} from '@ngx-translate/http-loader';
 import { PageNotFoundComponent } from './app/shared/components';
 import { HomeComponent } from './app/home/home.component';
 import { DetailComponent } from './app/detail/detail.component';
-import { RecentlyAddedComponent } from './app/pages/nav-bar/recently-added/recently-added.component';
-import { PlaylistsComponent } from './app/pages/nav-bar/playlists/playlists.component';
-import { AddedAlbumsComponent } from './app/pages/nav-bar/added-albums/added-albums.component';
+import { RecentlyAddedComponent } from './app/pages/main-screen-pages/recently-added/recently-added.component';
+import { PlaylistsComponent } from './app/pages/main-screen-pages/playlists/playlists.component';
+import { AddedAlbumsComponent } from './app/pages/main-screen-pages/added-albums/added-albums.component';
 
 if (APP_CONFIG.production) {
   enableProdMode();
