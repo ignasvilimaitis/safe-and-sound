@@ -66,5 +66,9 @@ function initIpc() {
         const tracks = yield (0, database_1.getAllTracks)();
         return tracks;
     }));
+    electron_1.ipcMain.handle('get-latest-track', (event, number) => __awaiter(this, void 0, void 0, function* () {
+        const track = yield (0, database_1.getLatestTrack)(number);
+        return track;
+    }));
 }
 //# sourceMappingURL=ipc.js.map

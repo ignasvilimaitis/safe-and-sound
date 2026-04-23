@@ -6,7 +6,14 @@
     flex-direction: column;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex: 1;
-    overflow: auto;
+}
+
+.main-page-navbar {
+    padding: 20px 0px 20px 40px;
+}
+
+.main-screen-top {
+    width: 100%;
+    display: flex;
 }
