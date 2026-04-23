@@ -19,6 +19,11 @@
   border: none;
   cursor: pointer;
 }
+
+.song-grid-button:hover .song-info {
+  background-color: #707070;
+  transition: all 0.3s ease;
+}
 .song-info {
   display: flex;
   flex-direction: column;
