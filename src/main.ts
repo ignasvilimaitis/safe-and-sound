@@ -35,7 +35,7 @@ bootstrapApplication(AppComponent, {
     provideRouter([
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'recently-added',
         pathMatch: 'full'
       },
       {

@@ -16,9 +16,9 @@ export class MainPageNavbarComponent implements OnInit {
   activePath: string = '/recently-added'; // default active path
 
   navItems = [
-    { label: 'Recently Added', path: '/recently-added' },
+    { label: 'Recent', path: '/recently-added' },
     { label: 'Playlists', path: '/playlists' },
-    { label: 'Added Albums', path: '/added-albums' },
+    { label: 'Albums', path: '/added-albums' },
   ];
 
   constructor(private router: Router) { }
