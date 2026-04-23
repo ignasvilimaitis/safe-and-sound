@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { PlayerService } from '../../../core/services/music-player/player.service';
 
 @Component({
   selector: 'app-song-grid-card',
@@ -10,7 +11,7 @@ import { Component, Input } from '@angular/core';
 export class SongGridCardComponent {
   @Input() track: any
 
-  constructor() {
+  constructor(private playerService: PlayerService) {
     if (this.track == null) {
       this.track = {
         id: '1',
@@ -23,7 +24,11 @@ export class SongGridCardComponent {
         addedAt: Date.now(),
       }
   }
-    
+  }
+
+  playTrack() {
+    console.log('Playing track:', this.track);
+    this.playerService.setTrack(this.track);
   }
 
 }
