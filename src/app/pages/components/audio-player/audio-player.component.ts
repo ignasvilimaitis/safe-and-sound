@@ -42,6 +42,16 @@ export class AudioPlayerComponent implements AfterViewInit {
     this.volumeService.volume$.subscribe(volume => {
       this.audioPlayer.nativeElement.volume = volume/100;
     })
+    if (this.currentTrack == null) {
+      this.currentTrack = {
+        id: '',
+        title: '',
+        artist: '',
+        path: '',
+        duration: 0,
+        addedAt: Date.now()
+      };
+    }
   }
 
 

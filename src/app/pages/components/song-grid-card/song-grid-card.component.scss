@@ -1,0 +1,58 @@
+.host {
+}
+
+.song-image {
+  width: 140px;
+  height: 140px;
+  background: none;
+  border: none;
+
+}
+
+.song-grid-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: inherit;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.song-grid-button:hover .song-info {
+  background-color: #707070;
+  transition: all 0.3s ease;
+}
+.song-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var( --color-background-primary);
+  gap: 10px;
+  height: 140px;
+  width: 170px;
+  font-weight: 600;
+  min-width:0;
+}
+
+.song-artist {
+  font-size: 24px;
+  color: var(--color-text-secondary);
+}
+
+.song-title {
+  font-size: 24px;
+  color: var(--color-text-secondary);
+}
+
+.song-album {
+  width:91%;
+  font-size: 20px;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;  
+  text-overflow:ellipsis;
+  min-width:0;
+}

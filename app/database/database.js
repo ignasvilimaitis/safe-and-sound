@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.initDb = initDb;
 exports.insertTrack = insertTrack;
 exports.getAllTracks = getAllTracks;
+exports.getLatestTrack = getLatestTrack;
 const electron_1 = require("electron");
 const db = require('better-sqlite3')((electron_1.app.getPath('userData'), 'safe-and-sound.db'));
 function initDb() {
@@ -29,5 +30,9 @@ function insertTrack(track) {
 function getAllTracks() {
     const stmt = db.prepare(`SELECT * FROM tracks`);
     return stmt.all();
+}
+function getLatestTrack(number) {
+    const stmt = db.prepare(`SELECT * FROM tracks ORDER BY addedAt DESC LIMIT ?`);
+    return stmt.all(number);
 }
 //# sourceMappingURL=database.js.map
