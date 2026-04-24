@@ -1,0 +1,9 @@
+<button class="song-grid-button" (click)="playTrack()">
+  <img [src]="track.artworkUrl" alt="Song Image" class="song-image">
+  <div class="song-info">
+    <div class="song-artist">{{ track.artist }}</div>
+    <div class="song-title">{{ track.title }}</div>
+    <div class="song-album">{{ track.album }}</div>
+
+  </div>
+</button>

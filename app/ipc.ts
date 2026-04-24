@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as mm from 'music-metadata';
 import { v4 as uuidv4 } from 'uuid';
 
-import { insertTrack, getAllTracks } from './database/database';
+import { insertTrack, getAllTracks, getLatestTrack } from './database/database';
 import { Track } from '../src/app/shared/models/track.model';
 import { uint8ArrayToBase64 } from 'uint8array-extras';
 
@@ -68,5 +68,10 @@ export function initIpc() {
     ipcMain.handle('get-tracks', async (event) => {
         const tracks = await getAllTracks();
         return tracks;
+    });
+
+    ipcMain.handle('get-latest-track', async (event, number) => {
+        const track = await getLatestTrack(number);
+        return track;
     });
 }

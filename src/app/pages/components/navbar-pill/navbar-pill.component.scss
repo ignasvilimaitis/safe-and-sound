@@ -1,0 +1,27 @@
+.pill {
+    display: inline-block;
+    align-items: center;
+    width: 100px;
+    height: 50px;
+    padding: 6px 14px;
+    border-radius: 99px;
+    border: var(--color-background-primary) solid 1px;
+    background: var(--color-background-primary);
+    font-size: 18px;
+    cursor: pointer;
+    color: var(--color-text-primary);
+    font-family: inherit;
+    font-weight: 500;
+}
+
+.pill:hover {
+    background-color: white;
+    color: var(--color-background-primary);
+}
+
+.active {
+    background-color: white;
+    color: var(--color-background-primary);
+    border:none;
+}
+

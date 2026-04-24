@@ -31,3 +31,8 @@ export function getAllTracks() {
     const stmt = db.prepare(`SELECT * FROM tracks`);
     return stmt.all();
 }
+
+export function getLatestTrack(number: number) {
+    const stmt = db.prepare(`SELECT * FROM tracks ORDER BY addedAt DESC LIMIT ?`);
+    return stmt.all(number);
+}
