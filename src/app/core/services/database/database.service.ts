@@ -36,4 +36,25 @@ export class DatabaseService {
             return null;
         }
     }
+
+    async updateLastPlayed(id: string) {
+        try {
+            const result = await this.ipc.invoke('update-last-played', id);
+            return result;
+        } catch (err) {
+            console.error('updateLastPlayed error:', err);
+            return null;
+        }
+    }
+
+    async getRecentTracks(number: number) {
+        try {
+            const tracks = await this.ipc.invoke('get-recent-tracks', number);
+            return tracks;
+        }
+        catch (err) {
+            console.error('Retrieving recent tracks error:', err);
+            return null;
+        }
+    }
 }

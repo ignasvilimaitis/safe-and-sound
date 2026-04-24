@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as mm from 'music-metadata';
 import { v4 as uuidv4 } from 'uuid';
 
-import { insertTrack, getAllTracks, getLatestTrack } from './database/database';
+import { insertTrack, getAllTracks, getLatestAddedTracks, getRecentTracks, updateLastPlayed } from './database/database';
 import { Track } from '../src/app/shared/models/track.model';
 import { uint8ArrayToBase64 } from 'uint8array-extras';
 
@@ -51,7 +51,7 @@ export function initIpc() {
                 path: path.join(appDataPath, 'tracks', path.basename(filePath)),
                 duration: metadata.format.duration || 0,
                 addedAt: Date.now(),
-                modifiedAt: Date.now(),
+                lastPlayed: 0,
             };
             return track;
         }));
@@ -71,7 +71,17 @@ export function initIpc() {
     });
 
     ipcMain.handle('get-latest-track', async (event, number) => {
-        const track = await getLatestTrack(number);
+        const track = await getLatestAddedTracks(number);
         return track;
     });
+
+    ipcMain.handle('update-last-played', async (event, id) => {
+        const result = await updateLastPlayed(id);
+        return result;
+    });
+
+    ipcMain.handle('get-recent-tracks', async (event, number) => {
+        const tracks = await getRecentTracks(number);
+        return tracks;
+});
 }

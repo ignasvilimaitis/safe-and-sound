@@ -15,7 +15,7 @@ import { Track } from '../../../shared/models/track.model';
 export class RecentlyAddedComponent {
   tracks: Track[] = [];
   constructor(private databaseService: DatabaseService) {
-    var receivedTracks = this.databaseService.getLatestTrack(8);
+    var receivedTracks = this.databaseService.getRecentTracks(8);
     receivedTracks.then((tracks) => {
       this.tracks = tracks;
       console.log('Received tracks:', tracks);

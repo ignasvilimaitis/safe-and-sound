@@ -51,7 +51,7 @@ function initIpc() {
                 path: path.join(appDataPath, 'tracks', path.basename(filePath)),
                 duration: metadata.format.duration || 0,
                 addedAt: Date.now(),
-                modifiedAt: Date.now(),
+                lastPlayed: 0,
             };
             return track;
         })));
@@ -67,8 +67,16 @@ function initIpc() {
         return tracks;
     }));
     electron_1.ipcMain.handle('get-latest-track', (event, number) => __awaiter(this, void 0, void 0, function* () {
-        const track = yield (0, database_1.getLatestTrack)(number);
+        const track = yield (0, database_1.getLatestAddedTracks)(number);
         return track;
+    }));
+    electron_1.ipcMain.handle('update-last-played', (event, id) => __awaiter(this, void 0, void 0, function* () {
+        const result = yield (0, database_1.updateLastPlayed)(id);
+        return result;
+    }));
+    electron_1.ipcMain.handle('get-recent-tracks', (event, number) => __awaiter(this, void 0, void 0, function* () {
+        const tracks = yield (0, database_1.getRecentTracks)(number);
+        return tracks;
     }));
 }
 //# sourceMappingURL=ipc.js.map

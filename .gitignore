@@ -55,3 +55,7 @@ Thumbs.db
 
 # DB
 safe-and-sound.db
+safe-and-sound.db-shm
+safe-and-sound.db-wal
+app/database/database.js
+app/ipc.js

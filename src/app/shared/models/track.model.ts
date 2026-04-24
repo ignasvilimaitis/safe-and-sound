@@ -22,5 +22,5 @@ export interface Track {
   artworkUrl?: string;  
 
   addedAt: number;    
-  modifiedAt?: number;  
+  lastPlayed?: number;  
 }

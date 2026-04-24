@@ -94,7 +94,7 @@ export class AudioPlayerComponent implements AfterViewInit {
   }
   
   playMusic() {
-
+    
     if (this.isPlaying) {
       this.player.pause();
     } else {
